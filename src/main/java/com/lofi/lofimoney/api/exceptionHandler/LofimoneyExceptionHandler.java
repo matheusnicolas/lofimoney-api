@@ -32,7 +32,7 @@ public class LofimoneyExceptionHandler extends ResponseEntityExceptionHandler {
                                                                HttpHeaders httpHeaders,
                                                                HttpStatus httpStatus, WebRequest request) {
         String userMessage = messageSource.getMessage("invalid.message", null, LocaleContextHolder.getLocale());
-        String developerMessage = exception.getCause().toString();
+        String developerMessage = exception.getCause() != null ? exception.getCause().toString() : exception.toString();
         List<Error> errors = Arrays.asList(new Error(userMessage, developerMessage));
         return handleExceptionInternal(exception, errors, httpHeaders, HttpStatus.BAD_REQUEST, request);
     }

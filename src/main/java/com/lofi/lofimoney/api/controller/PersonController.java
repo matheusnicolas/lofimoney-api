@@ -3,6 +3,7 @@ package com.lofi.lofimoney.api.controller;
 import com.lofi.lofimoney.api.event.CreatedResourceEvent;
 import com.lofi.lofimoney.api.model.Person;
 import com.lofi.lofimoney.api.repository.PersonRepository;
+import com.lofi.lofimoney.api.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,9 @@ public class PersonController {
 
     @Autowired
     private PersonRepository personRepository;
+
+    @Autowired
+    private PersonService personService;
 
     @Autowired
     private ApplicationEventPublisher publisher;
@@ -40,5 +44,17 @@ public class PersonController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void remove(@PathVariable Long id) {
         personRepository.deleteById(id);
+    }
+
+    @PutMapping("/persons/{id}")
+    public ResponseEntity<Person> update(@PathVariable Long id, @Valid @RequestBody Person person) {
+        Person savedPerson = personService.update(id, person);
+        return ResponseEntity.ok(savedPerson);
+    }
+
+    @PutMapping("/persons/{id}/active")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateActiveProperty(@PathVariable Long id, @RequestBody Boolean active) {
+        personService.updateActiveProperty(id, active);
     }
 }
