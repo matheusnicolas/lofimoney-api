@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS category;
 
 CREATE TABLE IF NOT EXISTS public.category (
-    code SERIAL PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL
 );
 

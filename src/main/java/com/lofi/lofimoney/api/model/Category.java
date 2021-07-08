@@ -14,16 +14,16 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "code")
-    private Long code;
+    @Column(name = "id")
+    private Long id;
 
     @NotNull
     @Size(min = 3, max = 20)
     @Column(name = "name")
     private String name;
 
-    public Category(Long cdde, String name) {
-        this.code = code;
+    public Category(Long id, String name) {
+        this.id = id;
         this.name = name;
     }
 
