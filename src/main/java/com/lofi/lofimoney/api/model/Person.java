@@ -23,7 +23,7 @@ public class Person {
 
     @NotNull
     @Column(name = "active")
-    private boolean active;
+    private Boolean active;
 
     @Embedded
     @AttributeOverrides(value = {
