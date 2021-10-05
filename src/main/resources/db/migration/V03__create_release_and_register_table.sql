@@ -30,3 +30,4 @@ ALTER TABLE release ALTER COLUMN id SET DEFAULT NEXTVAL('release_id_seq'::regcla
 INSERT INTO release(description, due_date, payment_date, value, note, type, category_id, person_id) VALUES ('Viagem EUA', '2021-12-01', '2021-12-30', 6.500, 'Passeio Disney', 'DESPESA', 1, 1);
 INSERT INTO release(description, due_date, payment_date, value, note, type, category_id, person_id) VALUES ('Alimentação', '2021-12-01', '2021-12-30', 30.0, 'Lanche no Burger King', 'DESPESA', 2, 2);
 INSERT INTO release(description, due_date, payment_date, value, note, type, category_id, person_id) VALUES ('Supermercado', '2021-12-01', '2021-12-30', 2.000, 'Compras no supermercado', 'DESPESA', 3, 3);
+INSERT INTO release(description, due_date, payment_date, value, note, type, category_id, person_id) VALUES ('Salário', '2021-12-01', '2021-12-30', 5000, 'Dinheiro trabalho', 'RECEITA', 5, 1);
