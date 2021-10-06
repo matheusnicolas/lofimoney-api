@@ -29,7 +29,7 @@ public class Release {
     private BigDecimal value;
 
     @Enumerated(EnumType.STRING)
-    private ReleaseType releaseType;
+    private ReleaseType type;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -80,14 +80,6 @@ public class Release {
         this.value = value;
     }
 
-    public ReleaseType getReleaseType() {
-        return releaseType;
-    }
-
-    public void setReleaseType(ReleaseType releaseType) {
-        this.releaseType = releaseType;
-    }
-
     public Category getCategory() {
         return category;
     }
@@ -102,5 +94,13 @@ public class Release {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    public ReleaseType getType() {
+        return type;
+    }
+
+    public void setType(ReleaseType type) {
+        this.type = type;
     }
 }
