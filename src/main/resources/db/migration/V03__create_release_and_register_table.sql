@@ -1,5 +1,5 @@
-CREATE TABLE public.release (
-    id integer PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS public.release (
+    id SERIAL PRIMARY KEY,
     description VARCHAR(50) NOT NULL,
     due_date DATE NOT NULL,
     payment_date DATE,
@@ -18,14 +18,14 @@ CREATE TABLE public.release (
             REFERENCES public.person(id)
 );
 
-CREATE SEQUENCE release_id_seq
-    INCREMENT 1
-    MINVALUE 1
-    MAXVALUE 9223372036854775807
-    START 1
-    CACHE 1;
+-- CREATE SEQUENCE release_id_seq
+--     INCREMENT 1
+--     MINVALUE 1
+--     MAXVALUE 9223372036854775807
+--     START 1
+--     CACHE 1;
 
-ALTER TABLE release ALTER COLUMN id SET DEFAULT NEXTVAL('release_id_seq'::regclass);
+-- ALTER TABLE release ALTER COLUMN id SET DEFAULT NEXTVAL('release_id_seq'::regclass);
 
 INSERT INTO release(description, due_date, payment_date, value, note, type, category_id, person_id) VALUES ('Viagem EUA', '2021-12-01', '2021-12-30', 6.500, 'Passeio Disney', 'DESPESA', 1, 1);
 INSERT INTO release(description, due_date, payment_date, value, note, type, category_id, person_id) VALUES ('Alimentação', '2021-12-01', '2021-12-30', 30.0, 'Lanche no Burger King', 'DESPESA', 2, 2);

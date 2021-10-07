@@ -20,16 +20,12 @@ public class ReleaseController {
     @Autowired
     private ReleaseRepository repository;
 
+    @Autowired
     private ApplicationEventPublisher publisher;
 
     @GetMapping("/releases")
     public List<Release> list () {
         return repository.findAll();
-    }
-
-    @GetMapping("/releases/{id}")
-    public Release getReleaseById(@PathVariable Long id) {
-        return repository.findById(id).orElse(null);
     }
 
     @PostMapping("/releases")
@@ -38,5 +34,12 @@ public class ReleaseController {
         publisher.publishEvent(new CreatedResourceEvent(this, response, savedRelease.getId()));
         return ResponseEntity.status(HttpStatus.CREATED).body(savedRelease);
     }
+
+    @GetMapping("/releases/{id}")
+    public Release getReleaseById(@PathVariable Long id) {
+        return repository.findById(id).orElse(null);
+    }
+
+
 
 }

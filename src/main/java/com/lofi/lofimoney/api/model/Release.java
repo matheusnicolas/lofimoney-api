@@ -15,6 +15,7 @@ import java.time.LocalDate;
 public class Release {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "description")
