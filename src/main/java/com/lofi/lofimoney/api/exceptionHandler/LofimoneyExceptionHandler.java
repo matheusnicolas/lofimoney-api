@@ -1,8 +1,10 @@
 package com.lofi.lofimoney.api.exceptionHandler;
 
+import org.flywaydb.core.internal.util.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -65,6 +67,14 @@ public class LofimoneyExceptionHandler extends ResponseEntityExceptionHandler {
         String developerMessage = exception.toString();
         List<Error> errors = Arrays.asList(new Error(userMessage, developerMessage));
         return handleExceptionInternal(exception, errors, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    }
+
+    @ExceptionHandler({DataIntegrityViolationException.class})
+    public ResponseEntity<Object> handleDataIntegrityViolationException(DataIntegrityViolationException exception, WebRequest request) {
+        String userMessage = messageSource.getMessage("resource.not-allowed-operation", null, LocaleContextHolder.getLocale());
+        String developerMessage = ExceptionUtils.getRootCause(exception).getMessage();
+        List<Error> errors = Arrays.asList(new Error(userMessage, developerMessage));
+        return handleExceptionInternal(exception, errors, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 
     public static class Error {

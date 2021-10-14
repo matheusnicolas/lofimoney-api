@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -18,24 +19,31 @@ public class Release {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     @Column(name = "description")
     private String description;
 
+    @NotNull
     @Column(name = "due_date")
     private LocalDate dueDate;
 
+    @NotNull
     @Column(name = "payment_date")
     private LocalDate paymentDate;
 
+    @NotNull
     private BigDecimal value;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private ReleaseType type;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "person_id")
     private Person person;
