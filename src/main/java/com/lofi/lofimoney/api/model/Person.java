@@ -1,5 +1,6 @@
 package com.lofi.lofimoney.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -69,5 +70,11 @@ public class Person {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    @JsonIgnore
+    @Transient
+    public boolean isInactive() {
+        return !this.active;
     }
 }
